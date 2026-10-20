@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F5F1">
+<meta name="description" content="用框架卡片快速掌握《即兴演讲》，展开完整讲解深入阅读。含四步讲话脚本、六大场景速查与行动练习。"><meta property="og:title" content="即兴演讲 · 读书笔记与框架卡片"><meta property="og:description" content="所谓即兴，是准备到看起来像临场发挥。AI 世界转译官读书笔记。"><title>《即兴演讲》读书笔记 · 框架 + 完整讲解</title>
+<style>
+:root{
+  --paper:#F7F5F1; --card:#FFF; --ink:#211E1A; --sub:#6E675E; --line:#E4DED4;
+  --c1:#7A5AA8; --c1b:#F1ECF8;
+  --c2:#A8472A; --c2b:#F9EBE5;
+  --c3:#1F6F84; --c3b:#E3F1F4;
+  --c4:#2F6B4F; --c4b:#E6F1EA;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif:"Songti SC","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --safe:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#121110;--card:#1C1A17;--ink:#EAE5DB;--sub:#9A9288;--line:#2E2A25;
+  --c1:#B49AD8;--c1b:#241D31;--c2:#E0825F;--c2b:#2C1E18;--c3:#6FB6C6;--c3b:#132629;--c4:#7FBF9B;--c4b:#14251C;}
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.72;padding-bottom:calc(40px + var(--safe))}
+.wrap{padding:0 16px;max-width:1000px;margin:0 auto}
+
+/* ===== 吸顶 ===== */
+#nav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line)}
+.navin{max-width:1000px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:8px}
+.navbk{font-size:13px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nbtn{flex:0 0 auto;font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--sub);cursor:pointer;min-height:34px}
+.nbtn.act{background:var(--c2);border-color:var(--c2);color:#fff}
+#menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--card);
+  border-bottom:1px solid var(--line);box-shadow:0 8px 20px rgba(0,0,0,.08);max-height:72vh;overflow:auto}
+#menu.open{display:block}
+#menu a{display:flex;gap:10px;align-items:baseline;padding:13px 18px;border-bottom:1px solid var(--line);
+  text-decoration:none;color:var(--ink);font-size:14.5px}
+#menu a:last-child{border-bottom:0}
+#menu a i{font-style:normal;font-family:var(--serif);font-size:13px;color:var(--sub);flex:0 0 22px}
+#menu a em{font-style:normal;margin-left:auto;font-size:11.5px;color:var(--sub)}
+
+/* ===== HERO ===== */
+.hero{padding:28px 0 22px;text-align:center}
+.hero .kick{font-size:11.5px;letter-spacing:.18em;color:var(--c2);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:var(--serif);font-size:30px;line-height:1.3;margin:0 0 7px;font-weight:700}
+.hero .au{font-size:12.5px;color:var(--sub);line-height:1.7;margin-bottom:20px}
+.oneline{padding:17px 20px;border:2px solid var(--c2);border-radius:12px;background:var(--card);
+  font-family:var(--serif);font-size:20px;font-weight:700;line-height:1.55}
+.oneline em{font-style:normal;color:var(--c2)}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.num{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 6px}
+.num b{display:block;font-family:var(--serif);font-size:24px;line-height:1.15;color:var(--c2)}
+.num span{font-size:11px;color:var(--sub);line-height:1.45;display:block;margin-top:3px}
+
+/* 用法提示 */
+.howto{margin:18px 0 0;padding:13px 15px;border-radius:10px;background:var(--c2b);font-size:13px;line-height:1.75;color:var(--ink)}
+.howto b{color:var(--c2)}
+
+/* 开场白 */
+.lede{margin:26px 0 0;padding:20px 18px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.lede p{margin:0 0 13px;font-size:15.5px;line-height:1.85}
+.lede p:last-child{margin-bottom:0}
+.lede .big{font-family:var(--serif);font-size:21px;font-weight:700;text-align:center;color:var(--c2);margin:16px 0}
+
+/* ===== 地图 ===== */
+.maphd{font-size:11.5px;letter-spacing:.16em;color:var(--sub);font-weight:700;margin:28px 0 11px}
+.map{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mb{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;padding:13px 12px;border-top:3px solid}
+.mb .no{font-size:10.5px;letter-spacing:.1em;font-weight:700;opacity:.8}
+.mb b{display:block;font-size:15px;margin:3px 0 2px}
+.mb .d{font-size:11.5px;color:var(--sub);line-height:1.5}
+.m1{border-top-color:var(--c2)} .m1 .no,.m1 b{color:var(--c2)}
+.m2{border-top-color:var(--c2)} .m2 .no,.m2 b{color:var(--c2)}
+.m3{border-top-color:var(--c3)} .m3 .no,.m3 b{color:var(--c3)}
+.m4{border-top-color:var(--c1)} .m4 .no,.m4 b{color:var(--c1)}
+
+/* ===== 节 ===== */
+.part{padding-top:10px;margin-top:34px;scroll-margin-top:62px}
+.phd{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.phd .no{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1;color:var(--c2)}
+.phd h2{font-size:19px;margin:0;font-weight:700;flex:1;line-height:1.4}
+.k1 .phd .no{color:var(--c1)} .k3 .phd .no{color:var(--c3)}
+.cards{display:grid;gap:11px}
+
+/* ===== 卡 ===== */
+.c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 16px;border-top:3px solid var(--c2)}
+.k1 .c{border-top-color:var(--c1)} .k3 .c{border-top-color:var(--c3)}
+.c h3{margin:0 0 3px;font-size:16.5px;font-weight:700;line-height:1.4}
+.c .sub{font-size:12.5px;color:var(--sub);margin-bottom:13px;line-height:1.6}
+.c p{margin:0 0 11px} .c p:last-child{margin-bottom:0}
+
+ul.k{list-style:none;margin:0;padding:0}
+ul.k li{padding:10px 0 10px 19px;border-top:1px solid var(--line);position:relative;font-size:14.5px;line-height:1.68}
+ul.k li:first-child{border-top:0;padding-top:1px}
+ul.k li::before{content:"";position:absolute;left:4px;top:18px;width:6px;height:6px;border-radius:50%;background:var(--c2)}
+ul.k li:first-child::before{top:9px}
+.k1 ul.k li::before{background:var(--c1)} .k3 ul.k li::before{background:var(--c3)}
+ul.k em{font-style:normal;color:var(--sub);font-size:13px}
+ul.x li::before,ul.v li::before{width:auto;height:auto;border-radius:0;background:none!important;font-weight:700;top:9px;left:2px;font-size:14px}
+ul.x li::before{content:"✕";color:var(--c2)} ul.x li:first-child::before{top:0}
+ul.v li::before{content:"✓";color:var(--c4)} ul.v li:first-child::before{top:0}
+
+/* 四步 */
+.steps{display:grid;gap:8px;margin-bottom:16px}
+.st{display:flex;gap:11px;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--paper)}
+.st.key{border:2px solid var(--c2);background:var(--c2b)}
+.st .idx{flex:0 0 25px;height:25px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700}
+.st.key .idx{background:var(--c2);color:#fff}
+.st .bd{flex:1;min-width:0}
+.st b{font-size:16.5px;font-family:var(--serif);display:block;line-height:1.3}
+.st .f{font-size:12.5px;color:var(--sub);line-height:1.6;margin:3px 0 7px}
+.st .eg{font-size:12.5px;line-height:1.6;padding:7px 9px;background:var(--card);border-radius:6px;border-left:2px solid var(--line)}
+.st.key .eg{border-left-color:var(--c2)}
+
+/* 伸缩 */
+.sc{display:grid;gap:10px}
+.scg .t{font-size:13px;font-weight:700;margin-bottom:5px}
+.scg .t i{font-style:normal;font-size:11px;color:var(--sub);font-weight:400;margin-left:6px}
+.pills{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.pl{height:33px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--sub);background:var(--paper)}
+.pl.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pl.key{background:var(--c2);border-color:var(--c2);color:#fff;font-weight:700}
+.pl.off{opacity:.3}
+
+/* 铁律 */
+.law{margin-top:13px;padding:13px 15px;border:2px solid var(--c2);border-radius:10px;background:var(--c2b);
+  font-size:15.5px;font-weight:700;line-height:1.6}
+.law span{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--c2);margin-bottom:5px}
+
+/* 对照 */
+.vs{display:grid;gap:10px}
+.vsb{border-radius:10px;padding:14px;font-size:13.5px;line-height:1.75}
+.vsb.no{background:var(--c2b);border:1px solid var(--c2)}
+.vsb.yes{background:var(--c4b);border:1px solid var(--c4)}
+.vsb .t{font-size:10.5px;letter-spacing:.1em;font-weight:700;padding:3px 9px;border-radius:4px;color:#fff;display:inline-block;margin-bottom:10px}
+.vsb.no .t{background:var(--c2)} .vsb.yes .t{background:var(--c4)}
+.vsb .lbl{font-size:10px;letter-spacing:.06em;color:var(--sub);font-weight:700;display:block;margin-top:7px}
+.vsb .rr{margin-top:11px;padding-top:9px;border-top:1px dashed var(--line);font-size:13px;color:var(--sub)}
+.vsb .rr b{color:var(--ink)}
+
+/* 场景 */
+.scene{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--card);border-left:3px solid var(--c3)}
+.scene .nm{font-size:15.5px;font-weight:700;margin-bottom:8px}
+.scene .use{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:10px}
+.scene .u{font-size:11px;height:27px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--c3);color:#fff}
+.scene .u.o{background:var(--paper);color:var(--sub);border:1px solid var(--line)}
+.scene .ac{font-size:13.5px;line-height:1.7}
+.scene .ac b{color:var(--c3)}
+
+/* 三层 */
+.lv{display:grid;gap:8px}
+.lvi{display:flex;gap:11px;padding:11px 12px;border-radius:10px;background:var(--c1b)}
+.lvi .ic{flex:0 0 34px;height:34px;border-radius:50%;background:var(--c1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13.5px;font-weight:700}
+.lvi b{display:block;font-size:14.5px;margin-bottom:2px}
+.lvi p{font-size:12.5px;color:var(--sub);margin:0;line-height:1.65}
+
+/* 词 */
+.words{display:flex;flex-wrap:wrap;gap:6px}
+.w{font-size:13px;padding:6px 11px;border-radius:7px;background:var(--c2b);border:1px solid var(--c2);color:var(--c2);text-decoration:line-through}
+.w.ok{background:var(--c4b);border-color:var(--c4);color:var(--c4);text-decoration:none}
+
+/* ===== 展开正文 ===== */
+details.full{margin-top:11px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+details.full>summary{list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:center;gap:9px;
+  font-size:14.5px;font-weight:700;color:var(--c2);min-height:50px}
+details.full>summary::-webkit-details-marker{display:none}
+details.full>summary .ar{margin-left:auto;font-size:12px;color:var(--sub);font-weight:400;display:flex;align-items:center;gap:7px}
+details.full>summary .chev{display:inline-block;transition:transform .2s;font-size:13px}
+details.full[open]>summary{border-bottom:1px solid var(--line)}
+details.full[open]>summary .chev{transform:rotate(180deg)}
+details.full[open]>summary .tx::after{content:"（点此收起）";font-weight:400;font-size:12px;color:var(--sub)}
+.prose{padding:20px 17px 22px}
+.prose p{margin:0 0 17px;font-size:16px;line-height:1.95}
+.prose p:last-child{margin-bottom:0}
+.prose strong{font-weight:700}
+.prose h4{font-size:16.5px;font-weight:700;margin:26px 0 12px}
+.prose .beat{font-family:var(--serif);font-size:19.5px;line-height:1.7;font-weight:700;
+  margin:22px 0;padding-left:15px;border-left:3px solid var(--c2)}
+.prose blockquote{margin:18px 0;padding:14px 16px;background:var(--paper);border:1px solid var(--line);
+  border-radius:8px;font-size:14.5px;line-height:1.85;color:var(--sub)}
+.prose blockquote p{font-size:14.5px;line-height:1.85;margin-bottom:10px}
+.prose blockquote p:last-child{margin-bottom:0}
+
+/* 行动 */
+.act{margin-top:34px;padding:25px 19px;border-radius:16px;background:var(--ink);color:var(--paper)}
+.act h3{margin:0 0 7px;font-size:20px;font-family:var(--serif)}
+.act .s{font-size:13.5px;opacity:.75;margin-bottom:17px;line-height:1.7}
+.act ol{margin:0;padding-left:19px}
+.act li{font-size:16px;font-weight:600;margin-bottom:11px;line-height:1.6}
+.act .ft{margin-top:17px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2);font-size:13px;opacity:.75;line-height:1.75}
+footer{margin-top:26px;font-size:12px;color:var(--sub);line-height:1.85;text-align:center;padding-bottom:10px}
+
+#top{position:fixed;right:14px;bottom:calc(16px + var(--safe));width:44px;height:44px;border-radius:50%;
+  background:var(--card);border:1px solid var(--line);color:var(--sub);display:none;align-items:center;justify-content:center;
+  font-size:17px;z-index:55;box-shadow:0 2px 10px rgba(0,0,0,.1);cursor:pointer}
+#top.show{display:flex}
+
+@media (min-width:760px){
+  body{font-size:15.5px}
+  .wrap{padding:0 26px}
+  .hero{padding:46px 0 26px}
+  .hero h1{font-size:38px}
+  .oneline{font-size:24px;max-width:600px;margin:0 auto;padding:20px 28px}
+  .nums,.howto,.lede{max-width:640px;margin-left:auto;margin-right:auto}
+  .nums{margin-top:16px}
+  .map{grid-template-columns:repeat(4,1fr)}
+  .cards{grid-template-columns:1fr 1fr;align-items:start}
+  .cards .full2{grid-column:1/-1}
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .st{flex-direction:column;gap:7px}
+  .scenes{grid-template-columns:1fr 1fr}
+  .vs.two{grid-template-columns:1fr 1fr}
+  .prose{padding:26px 34px 30px;max-width:720px}
+  .prose p{font-size:16px}
+}
+.nbtn.act{margin-top:0;padding:7px 12px;border-radius:999px}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--c3);outline-offset:4px}
+#sharestatus{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:90vw;background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:10px;z-index:100;display:none}
+@media(max-width:420px){.navin{gap:5px;padding:9px 10px}.navbk{font-size:11px}.nbtn{padding:7px 9px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="nav">
+  <div class="navin">
+    <div class="navbk">《即兴演讲》读书笔记</div>
+    <button class="nbtn" id="sharebtn">分享</button><button class="nbtn" id="mbtn" aria-controls="menu" aria-expanded="false">目录</button>
+    <button class="nbtn" id="abtn">展开全文</button>
+  </div>
+  <div id="menu">
+    <a href="#s1"><i>01</i>开口的机会变多了，代价也变大了<em>950 字</em></a>
+    <a href="#s2"><i>02</i>"即兴"的原意是"准备就绪"<em>1100 字</em></a>
+    <a href="#s3"><i>03</i>四步讲话脚本<em>2000 字</em></a>
+    <a href="#s4"><i>04</i>能伸能缩，才是真正值钱的地方<em>800 字</em></a>
+    <a href="#s5"><i>05</i>场景速查（无正文）<em>速查</em></a>
+    <a href="#s6"><i>06</i>技巧之前，有个更根本的问题<em>1500 字</em></a>
+    <a href="#s7"><i>07</i>被问住的那一刻<em>800 字</em></a>
+    <a href="#s8"><i>08</i>准备到最后，是为了忘掉准备<em>1100 字</em></a>
+    <a href="#act"><i>★</i>把它用在你自己身上<em>行动</em></a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="kick">AI 世界转译官 · 读书笔记</div>
+  <h1>即兴演讲</h1>
+  <div class="au">掌控人生关键时刻<br>朱迪思·汉弗莱 ｜ 人民邮电出版社</div>
+  <div class="oneline">所谓即兴，<em>不是临场发挥</em>，<br>是准备到看起来像临场发挥</div>
+  <div class="nums">
+    <div class="num"><b>20+</b><span>每天错过的<br>开口时刻</span></div>
+    <div class="num"><b>4</b><span>步<br>讲话脚本</span></div>
+    <div class="num"><b>1</b><span>条没有<br>例外的铁律</span></div>
+  </div>
+  <div class="howto"><b>两种读法：</b>只看卡片，五分钟掌握全书框架；哪一节想深看，点开"展开完整讲解"读原文。也可以点右上角「展开全文」一次全部打开。</div>
+</div>
+
+<div class="lede">
+  <p>你有没有过这么一个瞬间。</p>
+  <p>电梯门开了，走进来的是你们老板。七楼到一楼，大概四十秒。你脑子飞快地转——要不要说点什么？说什么？讲项目进展，好像太突兀；说句"最近还挺好的"，等于什么都没说。于是你盯着楼层数字，7、6、5……门开了，各走各的。</p>
+  <p>走出电梯你有一点点懊恼，但很快就忘了。因为这种事每天都在发生，多到你已经不把它当回事。</p>
+  <p>汉弗莱在书里做过一个调查，她问那些领导者：你一天大概会遇到多少个需要你开口的时刻？回答是"每天大概二十到二十三个"，"每小时两个，一天十小时，就是二十个"，还有一个人说："在单位、在家里、在社区，你都是领导者，你永远不能推卸。所以我的回答是，所有时刻。"</p>
+  <p class="big">一天二十次。</p>
+  <p>如果你跟我一样，第一反应是"有这么多吗"，那说明这些时刻确实是从你身边溜走的——它们没有被你当成机会，所以也没有被你记住。</p>
+</div>
+
+<div class="maphd">全书地图</div>
+<div class="map">
+  <a class="mb m1" href="#s2"><div class="no">认知</div><b>即兴 ＝ 准备就绪</b><div class="d">拆掉"这得靠天赋"</div></a>
+  <a class="mb m2" href="#s3"><div class="no">工具</div><b>四步讲话脚本</b><div class="d">抓手·要点·结构体·行动</div></a>
+  <a class="mb m3" href="#s5"><div class="no">应用</div><b>六大场景速查</b><div class="d">哪个场合留哪几块</div></a>
+  <a class="mb m4" href="#s6"><div class="no">底层</div><b>心态与倾听</b><div class="d">为什么学了还是不敢说</div></a>
+</div>
+
+<!-- 01 -->
+<section class="part" id="s1">
+  <div class="phd"><div class="no">01</div><h2>开口的机会变多了，代价也变大了</h2></div>
+  <div class="cards">
+    <div class="c">
+      <h3>三个变化，把你推到了台前</h3>
+      <div class="sub">你爸妈那代人不需要这项能力，你需要</div>
+      <ul class="k">
+        <li><b>组织扁平化</b><em>　你跟决策者之间隔的不再是五层，可能就是一台咖啡机</em></li>
+        <li><b>准备时间消失</b><em>　过去一篇演讲稿准备三个月；今天老板在走廊问你一句，你有三十秒</em></li>
+        <li><b>说错话传得更远</b><em>　每句话都可能影响你的声誉</em></li>
+      </ul>
+      <div class="law" style="font-size:14px"><span>代价有多大</span>BP 的 CEO 唐熙华在钻井平台爆炸、11 人死亡后对记者说"我希望能回到过去的时光"——这句话让他丢掉了职位。</div>
+    </div>
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 950 字</span></summary>
+  <div class="prose">
+    <p>先说一件事实：你爸妈那代人不需要这项能力，你需要。</p>
+    <p>过去的组织是金字塔。你在一家大公司干一辈子，可能都见不到董事长一面。沟通是自上而下的：领导在台上念稿，你在台下听。要讲话的人是少数几个，而且他们有的是时间准备——汉弗莱八十年代入行时是给高管写演讲稿的，她老板跟她说过一句话，如果客户不给我们留三个月准备时间，这稿我们可以不接。</p>
+    <p class="beat">三个月，一篇演讲稿。</p>
+    <p>今天没有这回事了。组织被压平了，你跟决策者之间隔着的不再是五层，可能就是一个开放工位和一台咖啡机。知识也不再只攥在顶层手里——核聚变怎么回事、这个客户为什么流失、那段代码为什么跑不动，答案散落在组织的各个角落，谁都可能是那个知道答案的人。</p>
+    <p>于是沟通的形态整个翻过来了。书里记了一个细节我印象很深：一位首席财务官要向分析师汇报季度业绩，汉弗莱问他讲稿呢，他指了指自己的太阳穴。还有一位高管刚跳槽到新公司，被安排对三千人讲话，他认认真真写了稿放在讲台上，CEO 看见了问："那是什么？""我的演讲稿啊。""哦，不用正式演讲，"CEO 说，"跟员工聊聊就行。"</p>
+    <p>同时，每个人的注意力都在变短，碎到几乎不剩什么。你约一个人见面，微信上已经来回聊过七八轮，见了面不需要铺垫，直接进正题，三句话定事。你的老板不会给你四十分钟听你讲 PPT，他会在走廊上问你一句"那个项目怎么样了"，你有大概三十秒。</p>
+    <p>机会变多了，留给你的时间变短了。这是第一层。</p>
+    <p>第二层更要命：你说错的话，现在传得比以前远得多。</p>
+    <p>二〇一〇年墨西哥湾钻井平台爆炸，十一个人死了，英国石油公司的 CEO 唐熙华面对记者说了一句"我希望能回到过去的时光"。从字面上看，这句话没有逻辑错误——他确实希望这事没发生过。但十一条人命刚没了，全世界等着听他说公司要怎么负责，他说的却是自己想回到过去。舆论炸了，他最后丢掉了那个位置。</p>
+    <p class="beat">一句话，一个职业生涯。</p>
+    <p>这不是极端个例，只是极端版本。书里还写了丹尼尔·克雷格，演了十几年邦德之后被记者问还想不想继续演，他说"我宁愿把这个玻璃杯敲碎割腕自杀，也不想再演了"。这话一出，投资方生气，影迷也不高兴——一个人连自己赖以成名的角色都公开嫌弃，在大多数人的价值尺度里，这是人品问题，不是性格直率。</p>
+    <p>所以今天的局面是：你每天有二十次开口的机会，每一次都可能加分，也都可能扣分，而且你基本没有时间准备。</p>
+    <p>这就是为什么汉弗莱要写这本书。她说得很直接：我们大多数人从来没有专门学过怎么即兴沟通，所以我们即兴发言的时候充满"随机性"——有时候说得还行，有时候闹笑话。<strong>在每句话都会影响你声誉的时代，我们承受不起这种随机性。</strong></p>
+  </div></details>
+</section>
+
+<!-- 02 -->
+<section class="part" id="s2">
+  <div class="phd"><div class="no">02</div><h2>"即兴"的原意是"准备就绪"</h2></div>
+  <div class="cards">
+    <div class="c">
+      <h3>两个词源，掰正一个误解</h3>
+      <div class="sub">那个代表"没准备"的词，来自一个做准备的动作</div>
+      <ul class="k">
+        <li><b>impromptu</b>　源自拉丁文 in promptu<em><br>原始含义就是"准备就绪"（in readiness）</em></li>
+        <li><b>off the cuff</b>　字面是"从袖口上来的"<em><br>十九世纪的人把发言要点记在硬纸袖口上，上台瞄一眼照着说</em></li>
+      </ul>
+    </div>
+    <div class="c">
+      <h3>他们不是不怕，是后来练出来的</h3>
+      <div class="sub">所以这不是天赋问题</div>
+      <ul class="k">
+        <li><b>丘吉尔</b>　早年在议会发言，脑子一片空白，默默站着直到受不了，回座位把头埋在手里。此后更怕站起来说话</li>
+        <li><b>林肯</b>　告诉年轻律师"应该多多练习即兴演讲"，自己就是这么练的</li>
+        <li><b>马丁·路德·金</b>　每次布道前仔细准备但不照稿念。"我有一个梦想"的核心是现场即兴加的</li>
+        <li><b>马斯克 / 巴菲特 / 布兰森</b>　都公开承认过怕公开演讲</li>
+      </ul>
+      <div class="law" style="font-size:14.5px"><span>丘吉尔的段子</span>司机开门说"先生我们到了"，他坐着不动：<b>"等一下，我还在看我的'即席'演讲稿。"</b></div>
+    </div>
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 1100 字</span></summary>
+  <div class="prose">
+    <p>讲到这儿，大多数人心里会冒出一个反驳：这不就是天赋吗？</p>
+    <p>有的人天生会说，脑子转得快，什么场合都能接住话。我不是那种人，我一紧张就卡壳，学也学不来。</p>
+    <p>这个念头拦住了太多人，所以得先把它拆掉。</p>
+    <p>温斯顿·丘吉尔，公认历史上最会讲话的人之一。他职业生涯早期在英国议会有一次发言机会，站起来之后，脑子一片空白，什么也想不起来。当时的记录是这么写的：他默默地站在那里，直到自己无法忍受，然后回到座位上，把头埋在手里。那一次之后，他比以往任何时候都害怕站起来说话。</p>
+    <p>林肯也不是天生的。他曾经告诉年轻律师：应该多多练习即兴演讲，培养自己这方面的能力。他自己就是这么练出来的。</p>
+    <p>小马丁·路德·金每次布道前都仔细准备，但他不照稿念。这种长期训练让他能在极短时间内重新调度思路——《我有一个梦想》那段最著名的核心，不在他前一晚准备的文本里，是现场即兴加进去的。</p>
+    <p>往今天看也一样。马斯克承认他曾经觉得公开演讲恐怖极了；巴菲特说他"害怕公开演讲"，现在他能在股东大会上现场直播着回答几个小时的提问；维珍的布兰森公开讲过自己早年的演讲阴影。</p>
+    <p>这些人有一个共同点：他们不是不怕，是后来练出来了。</p>
+    <p>那到底练的是什么？</p>
+    <p>这里有一个很妙的语言学事实。英文里形容一个人"脱口而出、没做准备"，有个说法叫 off the cuff，字面意思是"从袖口上来的"。这个词一九三六年才出现，它的来历是——十九世纪的人会把发言要点记在衬衫的硬纸袖口上，上台的时候瞄一眼照着说。</p>
+    <p class="beat">那个代表"没准备"的词，本身就来自一个做准备的动作。</p>
+    <p>"即兴"这个词也一样。impromptu 源自拉丁文 in promptu，原始含义是"准备就绪"（in readiness）。</p>
+    <p>所以汉弗莱给这本书定的核心，就是一句听上去自相矛盾的话：<strong>你必须做好"自然应对"的准备。</strong></p>
+    <p>丘吉尔后来有个著名的段子，说的就是这件事。他坐车去会场，车停了，司机给他开门，他坐在车里不动。司机说先生我们到了。丘吉尔头也不抬："等一下，我还在看我的'即席'演讲稿。"</p>
+    <p>这个段子好笑的地方在于它一点都不矛盾。看起来像现场反应的东西，背后几乎全是准备。真正的区别不在准备与否，而在你是否把准备藏得够好。</p>
+    <p>想明白这一点，整件事的性质就变了。你不再需要羡慕那些"天生会说"的人，你要做的是搞清楚：在只有三十秒、甚至只有三秒的情况下，准备到底准备什么？</p>
+  </div></details>
+</section>
+
+<!-- 03 -->
+<section class="part" id="s3">
+  <div class="phd"><div class="no">03</div><h2>四步讲话脚本</h2></div>
+  <div class="cards">
+
+    <div class="c full2">
+      <h3>领导者讲话脚本</h3>
+      <div class="sub">从听众开始，到听众结束。中间是你的观点和凭什么</div>
+      <div class="steps">
+        <div class="st"><div class="idx">1</div><div class="bd"><b>抓手</b>
+          <div class="f">一次"口头的握手"，让对方把注意力交给你</div>
+          <div class="eg">"我正想找你呢。"<br>"您有时间吗，有个事想请教。"</div></div></div>
+        <div class="st key"><div class="idx">2</div><div class="bd"><b>要点</b>
+          <div class="f">你的观点，压成一句话。是观点，不是话题</div>
+          <div class="eg">"我们损失了 240 号井，<b>但已经找到解决办法</b>。"</div></div></div>
+        <div class="st"><div class="idx">3</div><div class="bd"><b>结构体</b>
+          <div class="f">回答对方心里自动冒出的那句"凭什么"</div>
+          <div class="eg">四选一：原因／方法／情况-反应／时间顺序</div></div></div>
+        <div class="st"><div class="idx">4</div><div class="bd"><b>呼吁行动</b>
+          <div class="f">你想让对方干什么。没有落点，听完就散</div>
+          <div class="eg">"一切准备就绪，就等您点头同意。"</div></div></div>
+      </div>
+    </div>
+
+    <div class="c full2">
+      <h3>同一件事故，两种讲法</h3>
+      <div class="sub">运营总监詹姆斯向 CEO 格伦汇报钻井事故</div>
+      <div class="vs two">
+        <div class="vsb no"><span class="t">没有要点</span>
+          格伦，我来见你是因为我们有些不太正常的状况……在钻井过程中，很不幸，我们的人将钻杆卡在了井眼里。井身不得不废弃……我们投入了一千一百万美元，不能花了钱却没有可采储量。好消息是，最后一个套管已经做好定位……
+          <div class="rr">格伦：<b>"究竟是出了什么事？"</b></div></div>
+        <div class="vsb yes"><span class="t">四步脚本</span>
+          <span class="lbl">抓手</span>格伦，有时间吗？我有紧急的事想跟您谈谈。
+          <span class="lbl">要点</span>我们损失了第 240 号井，但已经找到解决办法。
+          <span class="lbl">结构体</span>水泥倒多了导致钻杆卡住；两天来想尽办法，现在有方案——从套管底部钻新洞绕过。
+          <span class="lbl">呼吁行动</span>一切准备就绪，就等您点头同意。
+          <div class="rr">格伦：<b>"好的，就这么解决。"</b></div></div>
+      </div>
+      <p style="margin-top:12px;font-size:14.5px"><b>差别不在信息量，在于：你把本该自己做的整理工作，外包给了听你说话的人。</b></p>
+    </div>
+
+    <div class="c">
+      <h3>要点的六个特征</h3>
+      <div class="sub">写完逐条对照，缺一条就重写</div>
+      <ul class="k">
+        <li><b>是观点，不是话题</b><em>　"我研究了三个方面"＝话题；"它仍是优质投资"＝观点</em></li>
+        <li><b>只有一句话</b><em>　不是一段，不是三点</em></li>
+        <li><b>有吸引力</b><em>　听众要能理解它、相信它、想跟随它</em></li>
+        <li><b>承载你的信念</b><em>　"数据相当不错"→"这是有史以来最好的季度"</em></li>
+        <li><b>以积极方向收尾</b><em>　可以从坏消息开始，但要落在能往前走的地方</em></li>
+        <li><b>清晰可辨</b><em>　必要时直接说"我的要点是""我相信"</em></li>
+      </ul>
+    </div>
+
+    <div class="c">
+      <h3>结构体的四种模式</h3>
+      <div class="sub">说完要点，对方自动会问"凭什么"</div>
+      <ul class="k">
+        <li><b>原因模式</b>　我为什么这么判断<em><br>"我们需要更包容的工作环境" → 三条理由</em></li>
+        <li><b>方法模式</b>　这事具体怎么干<em><br>"我们能解决这个问题" → 三个步骤</em></li>
+        <li><b>情况／反应</b>　出了什么事，怎么应对<em><br>钻井案例用的就是这个</em></li>
+        <li><b>时间顺序</b>　按时间线走<em><br>"按时完成目标" → 第一年、第二年、今天</em></li>
+      </ul>
+      <div class="law" style="font-size:14px"><span>最容易被忽略</span>必须说出路标词："第一个理由……第二个……"即兴场合没有 PPT，这几个词是听众唯一的目录。</div>
+    </div>
+
+    <div class="c">
+      <h3>抓手：能用 vs 堵死路</h3>
+      <div class="sub">开场第一句决定对方还听不听</div>
+      <ul class="k v" style="margin-bottom:11px">
+        <li>"我正想找你呢。"</li>
+        <li>"我刚知道一件事，你可能比较关心。"</li>
+        <li>"我理解你的想法，我也分享一下我的看法。"</li>
+      </ul>
+      <ul class="k x">
+        <li><b>"恕我直言"</b>　对方的防御立刻起来</li>
+        <li><b>"我这人说话比较直"</b>　你既然知道难听，为什么还说</li>
+        <li><b>"这是个很好的问题"</b>　评价问题＝把自己放上裁判席</li>
+        <li><b>会跑偏的抓手</b>　问"你家人怎么样"，他讲十分钟他妈妈生病，正事再也接不上</li>
+      </ul>
+    </div>
+
+    <div class="c">
+      <h3>呼吁行动的六种形态</h3>
+      <div class="sub">必须有。没有落点的话，听完就散</div>
+      <ul class="k">
+        <li><b>把话筒交出去</b><em>　"我的看法就是这些，您怎么看？"</em></li>
+        <li><b>要一个决定</b><em>　"所以我希望您能批准。"</em></li>
+        <li><b>给下一步</b><em>　"林恩协调，阿比和肖恩负责后勤。"</em></li>
+        <li><b>鼓励对方</b><em>　"我相信你一定能做到。"</em></li>
+        <li><b>下最后通牒</b><em>　"我想知道我们到底是还是否。"</em></li>
+        <li><b>激发合作</b><em>　"有任何事告诉我，我尽力支持。"</em></li>
+      </ul>
+    </div>
+
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 2000 字</span></summary>
+  <div class="prose">
+    <p>汉弗莱给的答案是一个四步模板。她管它叫"领导者讲话脚本"。</p>
+    <p>抓手、要点、结构体、呼吁行动。</p>
+    <p>四个词看上去平平无奇，所以我不打算直接解释它们。先看一个真实的失败现场。</p>
+    <p>詹姆斯是一家油气公司的运营总监，井上出了事故。他去跟 CEO 格伦汇报：</p>
+    <blockquote><p>格伦，我来见你是因为我们有些不太正常的状况，我们都不会感到高兴的状况。情况是这样的，在钻井过程中，很不幸，我们的人将钻杆卡在了井眼里。井身不得不废弃，其实也必须被废弃。我们想重新钻那口井，毕竟我们投入了一千一百万美元，不能花了钱却没有可采储量。好消息是，我们安置的最后一个套管已经做好定位，可以解决问题。</p></blockquote>
+    <p>格伦的反应是一句：<strong>"究竟是出了什么事？"</strong></p>
+    <p>你读到这句，能感觉到那个火气。而詹姆斯其实没撒谎、没隐瞒，他甚至把好消息也说了。他的问题在于，这段话里一个观点都没有，全是信息。格伦听完得自己在脑子里把这堆碎片重新拼一遍，才能判断"所以严重吗""所以要我干什么"。</p>
+    <p class="beat">你把本该自己做的整理工作，外包给了听你说话的人。</p>
+    <p>这就是没有要点的样子。改写之后，同一件事故、同一批事实、同样的坏消息，格伦的回答变成了"好的，就这么解决"。中间差的东西，可以拆成四块。</p>
+
+    <h4>要点：如果只剩一句话，留下它</h4>
+    <p>四块里最核心的是要点，所以从它开始。</p>
+    <p>要点就是你的观点，压缩成一句话。注意是<strong>观点</strong>，不是话题。"我研究过 X 公司的三个方面，财务状况、石油储备、行业地位"——这是话题，说完等于没说。"X 公司仍然属于优质投资"——这才是观点。</p>
+    <p>汉弗莱给了要点六个特征，我把其中最容易出错的三个挑出来说。</p>
+    <p><strong>它必须是一句话。</strong>不是一段，不是三点。你对客户说"我们准备随时为你们提供帮助，我们一定可以完成，当然我们还将和你们继续合作"——这里有三个要点，听众一个都记不住。换成"我们确信能够为你们提供服务"，一句，立住了。</p>
+    <p><strong>它必须承载你自己的信念。</strong>书里举了一个对照，很见功力。一位 CEO 对分析师说："我很高兴，我们交出了相当不错的数据。"他本来可以说："我很高兴地宣布，我们这个季度的表现是有史以来最好的。"同一个季度，同一份财报，前一句是在汇报，后一句是在领导。</p>
+    <p><strong>它要以积极的方向收尾。</strong>这不是让你粉饰。要点完全可以从坏消息开始，但要落在能往前走的地方。有家林业公司当年面临巨大危机，CEO 对员工说的第一句是"已经有人催促我们把锯木厂拆了，用驳船运到国外重新组装"——这是真实的、吓人的处境；但他紧接着说，我相信我们能一起想出办法，我给大家九十天。最后他们真做到了。</p>
+    <p>然后是这本书里我认为最该记住的一条规则：<strong>不管讲话被压缩到什么程度，唯一不能删的是要点。</strong></p>
+    <p>抓手可以不要，结构体可以不要，呼吁行动可以不要。只剩一句话的时候，那句话必须是你的观点。因为一段没有观点的话，对听的人来说价值是零——他拿走的只是一堆需要他自己处理的原料。</p>
+
+    <h4>结构体：四种模式，和四个路标词</h4>
+    <p>要点说完，对方心里会自动冒出一个问题：凭什么？</p>
+    <p>结构体就是回答这个"凭什么"。汉弗莱把它收敛成四种模式：原因模式（我为什么这么判断）、方法模式（这事具体怎么干）、情况/反应模式（出了什么事、我们怎么应对）、时间顺序模式（按时间线走）。前面那个钻井案例用的就是情况/反应。</p>
+    <p>模式本身不难，难的是下面这个被很多人忽略的动作：<strong>说出路标词。</strong></p>
+    <p>你要讲三条理由，就老老实实说"第一个理由……第二个理由……第三个理由"。用情况/反应模式，就明说"我们面临的挑战是……""那我们怎么应对呢……"。</p>
+    <p>为什么这么土的做法反而重要？</p>
+    <p>因为即兴场合没有 PPT。没有屏幕上那个"1、2、3"，没有讲义，没有任何视觉提示。听众只能靠耳朵跟着你走，而耳朵是线性的、容易掉队的。<strong>那几个路标词就是你唯一能给对方的目录。</strong></p>
+    <p>很多人觉得说"第一第二第三"显得笨，不够高级。恰恰相反，听的人会因此松一口气——他知道你讲到哪了，还剩多少，该把注意力放在哪。</p>
+
+    <h4>抓手和呼吁行动：从听众开始，到听众结束</h4>
+    <p>剩下两块是一头一尾，它们的共同点是都不在讲你自己，而在处理你和对方的关系。</p>
+    <p>抓手的任务只有一个：让对方愿意把注意力交给你。汉弗莱有个比喻，说它是一次"口头的握手"。</p>
+    <p>它可以很轻。"我正想找你呢。""我刚知道一件事，你可能比较关心。""您有时间吗，有个事想请教您。"在会上接别人的话，就说"我理解你的想法，我也分享一下我的看法"。</p>
+    <p>但有几种抓手会直接把路堵死。</p>
+    <p><strong>"恕我直言。"</strong>这四个字一出口，对方的防御立刻起来了。还有"我这人说话比较直""我可能说得难听啊"——你既然知道难听，为什么还要说。</p>
+    <p><strong>"这是个很好的问题。"</strong>这句听上去客气，问题在于它的位置是错的：评价问题的人是在上面的，你把自己放到了裁判席上。你的角色是回答，不是打分。更麻烦的是，你说这个问题好，那下一个问题是不是就不好了。</p>
+    <p><strong>会跑偏的抓手。</strong>你问同事"你家人最近怎么样"，他开始讲他妈妈生病的事，讲了十分钟，你要说的正事再也接不上了。抓手要跟你的要点接得上，不然它就是一个岔路口。</p>
+    <p>呼吁行动则是另一头：你说了半天，想让对方干什么？它可以是把话筒交出去，可以是要一个决定，可以是下一步安排，也可以只是鼓励。</p>
+    <p>关键是必须有。因为一段没有落点的话，听完就散了。<strong>你讲话的目的从来不是把话讲完，是让某件事往前动一格。</strong></p>
+  </div></details>
+</section>
+
+<!-- 04 -->
+<section class="part" id="s4">
+  <div class="phd"><div class="no">04</div><h2>能伸能缩，才是真正值钱的地方</h2></div>
+  <div class="cards">
+    <div class="c full2">
+      <h3>按剩多少时间，自由伸缩</h3>
+      <div class="sub">同一套结构，三十分钟能用，十秒钟也能用</div>
+      <div class="sc">
+        <div class="scg"><div class="t">30 分钟汇报<i>四块都要</i></div>
+          <div class="pills"><div class="pl on">抓手</div><div class="pl key">要点</div><div class="pl on">结构体</div><div class="pl on">呼吁行动</div></div></div>
+        <div class="scg"><div class="t">只剩 5 分钟<i>压缩结构体</i></div>
+          <div class="pills"><div class="pl on">抓手</div><div class="pl key">要点</div><div class="pl on">压缩</div><div class="pl on">呼吁行动</div></div></div>
+        <div class="scg"><div class="t">会上插一句<i>砍掉后两块</i></div>
+          <div class="pills"><div class="pl on">抓手</div><div class="pl key">要点</div><div class="pl off">—</div><div class="pl off">—</div></div></div>
+        <div class="scg"><div class="t">电梯 10 秒<i>只剩头尾</i></div>
+          <div class="pills"><div class="pl off">—</div><div class="pl key">要点</div><div class="pl off">—</div><div class="pl on">呼吁行动</div></div></div>
+      </div>
+      <div class="law"><span>唯一没有例外的规则</span>不管被压缩到什么程度，唯一不能删的是要点。</div>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--sub)"><b>还可以边说边搭：</b>讲完抓手停一下想要点，讲完要点停一下想结构体。<b>停顿不会让你显得慢，只会让你显得重。</b></p>
+    </div>
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 800 字</span></summary>
+  <div class="prose">
+    <p>到这儿为止，这个模板听起来还只是一个"好好说话"的框架。真正让它能用在"即兴"场合的，是下面这件事。</p>
+    <p class="beat">它可以根据你剩多少时间，自由地伸缩。</p>
+    <p>你有三十分钟，它就是一篇完整的汇报：抓手引入、要点立住、结构体三条论据每条配案例、呼吁行动收尾。</p>
+    <p>你只剩五分钟——老板临时说"我只有五分钟"——就把三十分钟的内容压成四块的骨架，这本身就是一份合格的提要。</p>
+    <p>你在会上插一句话，只要抓手加要点就够了："我完全同意你的意见（抓手），我们需要加强合作（要点）。"</p>
+    <p>电梯门已经开了，老板走进来，你只剩十几秒——那就只留要点和呼吁行动："有个事想跟您汇报一下，一起喝杯咖啡吧？"</p>
+    <p>同一套结构，三十分钟能用，十秒钟也能用。这就是为什么汉弗莱说要把这四个部分"刻在脑子里"——你不需要每次重新想该说什么，你只需要判断这次有多少空间，然后决定留几块。</p>
+    <p>还有一个更实用的用法，我觉得是全书最被低估的一条：</p>
+    <p class="beat">你可以边说边搭。</p>
+    <p>也就是说，不必事先想好全部才开口。讲完抓手，停一下，想要点；讲完要点，停一下，想结构体；讲完结构体，停一下，想呼吁行动。</p>
+    <p>很多人不敢停。觉得一停就显得自己卡住了、反应慢。实际效果正好相反——汉弗莱带过的人里，回答问题最容易出事的，都是那些接到问题就立刻开口的。她的同事说得更准："绝大多数人回答问题不作停顿，他们只是说、说、说，有时候三十秒内就说完了，但思路是乱的。"</p>
+    <p>而一个在开口前停了两秒的人，在听众眼里是在认真想你的问题。</p>
+    <p class="beat">停顿不会让你显得慢，只会让你显得重。</p>
+  </div></details>
+</section>
+
+<!-- 05 场景速查 -->
+<section class="part k3" id="s5">
+  <div class="phd"><div class="no">05</div><h2>六大场景速查</h2></div>
+  <div class="cards scenes">
+
+    <div class="scene">
+      <div class="nm">项目汇报</div>
+      <div class="use"><div class="u">抓手</div><div class="u">要点</div><div class="u">结构体</div><div class="u">呼吁行动</div></div>
+      <div class="ac">不要只报事实。<b>要点必须积极</b>——"项目稳步推进"；哪怕结果不好，也要说清为什么会好转。结构体用方法或原因模式。</div>
+    </div>
+
+    <div class="scene">
+      <div class="nm">电梯 10 秒</div>
+      <div class="use"><div class="u o">抓手</div><div class="u">要点</div><div class="u o">结构体</div><div class="u">呼吁行动</div></div>
+      <div class="ac">提前想好"你希望对方记住关于你的什么"。<b>"有个事想跟您汇报，一起喝杯咖啡吧？"</b></div>
+    </div>
+
+    <div class="scene">
+      <div class="nm">求职面试</div>
+      <div class="use"><div class="u">抓手</div><div class="u">要点</div><div class="u">结构体</div><div class="u">呼吁行动</div></div>
+      <div class="ac">把岗位描述和自己逐条对齐，写成<b>完整句子</b>（不是要点）再内化。要点：<b>"你要找的和我能给的，匹配度很高。"</b>四条论据各配一个真实经历。别一进门就自顾自开讲——让面试官引导，你从脚本里抽内容答。</div>
+    </div>
+
+    <div class="scene">
+      <div class="nm">社交活动</div>
+      <div class="use"><div class="u o">抓手</div><div class="u">要点</div><div class="u">结构体</div><div class="u">呼吁行动</div></div>
+      <div class="ac">先定目标人、提前查他；<b>等他和别人的对话出现停顿再上前</b>。可以直接从要点开始："我真的很希望您能帮我判断职业的下一步。"收在"一起喝杯咖啡"。</div>
+    </div>
+
+    <div class="scene">
+      <div class="nm">敬酒 / 致辞</div>
+      <div class="use"><div class="u">抓手</div><div class="u">要点</div><div class="u">结构体</div><div class="u">呼吁行动</div></div>
+      <div class="ac">保持积极 ＋ 做好调查 ＋ <b>只讲一个要点</b>。"关于他要说的太多了，我只说三点"＝杂货清单，听众不知道哪个最重要。慎用幽默，绝不挖苦。</div>
+    </div>
+
+    <div class="scene">
+      <div class="nm">被临时压缩时间</div>
+      <div class="ac">三条路：① 放弃 PPT，只讲四块；② 只放关键的 4-6 页（提前单独存一个精简版）；③ 只讲要点。<br><b>最糟的做法</b>是快速翻完整份，边翻边说"这页不重要跳过"——听众会觉得没被尊重。</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="part k1" id="s6">
+  <div class="phd"><div class="no">06</div><h2>技巧之前，有个更根本的问题</h2></div>
+  <div class="cards">
+
+    <div class="c">
+      <h3>领导者的意愿</h3>
+      <div class="sub">模板解决"怎么说"，解决不了"要不要说"</div>
+      <ul class="k">
+        <li><b>先决定要不要影响他</b><em>　一种想感染他人的欲望，这是所有技巧的前提</em></li>
+        <li><b>也要判断什么时候闭嘴</b><em>　每次互动都可能是领导力时刻，但不意味着每次都该是</em></li>
+        <li><b>公共场合不谈敏感事</b><em>　大厅撞见老迟到的下属，别来一句"又迟到了啊"</em></li>
+        <li><b>麦克风始终开着</b><em>　私下随口一句，都可能原样传回办公室</em></li>
+      </ul>
+    </div>
+
+    <div class="c">
+      <h3>自我削弱：最常见的自毁</h3>
+      <div class="sub">书中案例 · 凯伦的 30 秒自我介绍</div>
+      <div class="vsb no" style="border-color:var(--line);background:var(--c1b)">
+        "嗨，罗布，我是凯伦。<b>你可能不记得我</b>，但我曾经在财务部吃过早餐……<b>我们法务部的人对财务目标一无所知</b>……"
+      </div>
+      <p style="margin-top:11px;font-size:14px">三十秒里她做完三件事：不报姓氏、明示自己不值得被记住、顺带说整个部门什么都不懂。<b>没有人逼她贬低自己。</b></p>
+    </div>
+
+    <div class="c">
+      <h3>倾听的三个层次</h3>
+      <div class="sub">你要说什么，一半取决于现场发生了什么</div>
+      <div class="lv">
+        <div class="lvi"><div class="ic">身</div><div><b>用身体听</b><p>身体转向他、微微前倾、手机拿开。研究显示手机只是放在桌上没碰，谈话质量就会下降。</p></div></div>
+        <div class="lvi"><div class="ic">脑</div><div><b>用大脑听</b><p>听用词：满嘴"可能、也许、有点"＝判断还没长成；说"我相信、我确定"＝是真的。</p></div></div>
+        <div class="lvi"><div class="ic">心</div><div><b>用心听</b><p>"怎么着都行"＝我知道你不在乎我怎么想；"无意冒犯"＝下一句一定冒犯你；"我顺其自然"＝不同意但不吵了。</p></div></div>
+      </div>
+    </div>
+
+    <div class="c">
+      <h3>分享脆弱 ≠ 削弱自己</h3>
+      <div class="sub">同一种情绪，两种讲法，效果是反的</div>
+      <div class="vs">
+        <div class="vsb no"><span class="t">削弱领导力</span>
+          站在台上公开演讲，对听众说："其实我不太喜欢公开演讲。"
+          <div class="rr">你在消解自己此刻正在做的事。</div></div>
+        <div class="vsb yes"><span class="t">分享脆弱</span>
+          私下对同事说："演讲对我从来不容易，但我刚接了一个邀请，因为我想练这个。"
+          <div class="rr">承认困难，同时展示你在往前走。</div></div>
+      </div>
+    </div>
+
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 1500 字</span></summary>
+  <div class="prose">
+    <p>讲到这里，这套东西已经可以直接用了。但如果就停在这儿，会漏掉这本书的另一半——而那一半恰恰解释了，为什么有些人学了技巧还是不开口。</p>
+    <p>汉弗莱把第二部分整个留给了一件事：心态。她的顺序是先心态，后脚本。读完全书我理解了她为什么这么排。</p>
+    <p class="beat">因为模板解决的是"怎么说"，它解决不了"我要不要说"。</p>
+
+    <h4>你到底想不想影响别人</h4>
+    <p>书里有个场景，我看完很久没缓过来。</p>
+    <p>汉弗莱讲课时会请观众上台演练。有一次一位女士举手上来，要练习怎么跟公司的首席财务官搭话。两百人看着她，她鼓足勇气，开口说的是这样一段：</p>
+    <blockquote><p>"嗨，罗布，我是凯伦。你可能不记得我，但我曾经在财务部吃过早餐。我不知道你是不是已经意识到，但对我们来说却真的是大开眼界。我们法务部的人对财务目标与我们的目标之间的联系一无所知，但现在已经不同了。所以，我很高兴我们参加了这个活动。"</p></blockquote>
+    <p>三十秒，她完成了三件事：没有报自己的姓，所以对方记不住她；明示了自己不值得被记住；顺带告诉财务官，她整个部门此前什么都不懂。</p>
+    <p>这段话里的每一个字都是她自己说的。没有人逼她贬低自己。</p>
+    <p>这种自我削弱有无数个变体，你一定听过，甚至说过："这可能是个很蠢的问题……""我就随便说说啊……""不一定对，就是一个想法……""我可能理解错了……"</p>
+    <p>汉弗莱管这些叫"提示语"，建议直接切掉。因为你在正式内容前面挂了一个免责声明，听的人会按你给的折扣来听。你自己先打了六折，对方不会按原价收。</p>
+    <p>更深的一层是："想不想影响别人"这件事本身，是你可以选的。</p>
+    <p>书里把它叫做"领导者的意愿"——一种想感染他人的欲望。不是每个人都有，也不是每次都要有。有意思的是，汉弗莱特意强调了反面：<strong>每一次互动都可能成为领导力时刻，但这不意味着每一次互动都应该成为领导力时刻。</strong></p>
+    <p>你刚跟团队聊了一整天战略，晚饭桌上就别再聊战略了。你刚给 CEO 汇报完投资方案，茶歇的时候放过她。公司大厅里撞见那个老迟到的下属，不要来一句"又迟到了啊菲尔"——那种事关上门说。</p>
+    <p>能开口和该开口，是两回事。判断什么时候闭嘴，也是这项能力的一部分。</p>
+
+    <h4>倾听的三个层次</h4>
+    <p>另一件在技巧之前的事，是听。这事听起来像老生常谈，但汉弗莱拆得比一般人细，她分成三层。</p>
+    <p><strong>用身体听。</strong>把身体转向对方，身体微微前倾，眼睛看着他，手机拿开。注意这不是礼仪，是有数据的：研究显示两个人谈话时，哪怕手机只是放在桌上没碰，谈话质量都会下降。开会时你低头瞥一眼手机，对方立刻就知道你不想听了——而且说实话，那一刻你确实没在听。</p>
+    <p><strong>用脑子听。</strong>听懂他想表达什么，而不只是听见他说了什么。如果对方表达得乱，你能不能帮他理出第一第二第三？能不能追问一句"你是怎么得出这个结论的""你还考虑过哪些选择"？</p>
+    <p>这里有个实用的细节：听对方的用词。如果他满嘴"呃""可能""有点""也许"，说明这个判断在他心里还没长成；如果他说"我相信""我确定"，那是真的。</p>
+    <p><strong>用心听。</strong>听出情绪。一个人嘴上说"怎么着都行"，真实意思往往是"我知道你不在乎我怎么想"；说"无意冒犯"的人，下一句一定会冒犯你；说"我会顺其自然"的意思通常是"我不同意，但我不打算吵了"。</p>
+    <p>为什么这三层直接影响你开口的质量？因为所有即兴场合都是双向的。你要说的内容，一半取决于现场发生了什么。书里有位大学院长的说法特别准：他每次走进教室前准备三套讲法，直到站上讲台看见学生的眼神，才决定今天用哪一套。</p>
+
+    <h4>分享脆弱，和削弱自己</h4>
+    <p>还有一个边界，我觉得汉弗莱分得极准，值得单拿出来。</p>
+    <p>今天到处都在说"做真实的自己""领导者要展现脆弱"。问题是，脆弱和自我削弱长得很像，分不清就会出事。</p>
+    <p>你站在台上公开演讲，对听众说"其实我不太喜欢公开演讲"——这是削弱你的领导力。你在消解自己此刻正在做的这件事。</p>
+    <p>你私下跟一位同事说，演讲对我从来都不容易，但我刚接了一个演讲邀请，因为我想练这个——这是分享脆弱。你承认了困难，同时展示了你在往前走。</p>
+    <p>同一种情绪，两种讲法，效果是反的。</p>
+    <p>贝佐斯一九九四年对亚马逊的第一批投资人说过一句话："我认为我们有百分之七十的可能会赔光，所以除非你能够承担损失，否则不要投资。"这是脆弱，不是示弱——他对风险的判断是清楚的，他只是诚实。</p>
+  </div></details>
+</section>
+
+<!-- 07 -->
+<section class="part" id="s7">
+  <div class="phd"><div class="no">07</div><h2>被问住的那一刻</h2></div>
+  <div class="cards">
+    <div class="c">
+      <h3>问答的八个陷阱</h3>
+      <div class="sub">最容易翻车的不是你发言，是别人提问</div>
+      <ul class="k x">
+        <li><b>重复对方的否定说法</b>　"我不是骗子"跟了他一辈子</li>
+        <li><b>评价问题</b>　"这是个好问题"＝高高在上。直接答</li>
+        <li><b>推测</b>　"这个数据还没公布，但我可以告诉你的是……"</li>
+        <li><b>默认错误前提</b>　先把前提纠回来，再答后半句</li>
+        <li><b>反问提问者</b>　"那你觉得呢"会让场面失控</li>
+        <li><b>急着开口</b>　先停一拍。急答常常答的是你以为的那个问题</li>
+        <li><b>因"这不是问题"而不满</b>　仍要优雅，从赘词里挖出他想问什么</li>
+        <li><b>回答极端无理的问题</b>　微笑，下一个</li>
+      </ul>
+      <div class="law" style="font-size:14px"><span>比所有陷阱都重要</span>听出问题背后的问题。下属问"这次合并会裁员吗"，他真正想问的是"我会不会丢工作"。</div>
+    </div>
+    <div class="c">
+      <h3>提示语黑名单</h3>
+      <div class="sub">你自己先打了六折，对方不会按原价收</div>
+      <div class="words">
+        <span class="w">这可能是个蠢问题</span><span class="w">我就随便说说</span>
+        <span class="w">不一定对，就是个想法</span><span class="w">我可能理解错了</span>
+        <span class="w">别误会我的意思</span><span class="w">好像、也许、基本上</span>
+      </div>
+      <p style="margin:12px 0 7px;font-size:12.5px;color:var(--sub)">换成 ——</p>
+      <div class="words">
+        <span class="w ok">我相信</span><span class="w ok">我建议</span><span class="w ok">我一直在思考</span>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--sub)">还要小心<b>尾音升调</b>：句尾抬高像在提问，等于在质疑自己的观点。</p>
+    </div>
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 800 字</span></summary>
+  <div class="prose">
+    <p>即兴场合里最容易翻车的，其实不是你主动说话的时候，是别人向你提问的时候。</p>
+    <p>主动发言你多少有点准备。被提问是对方定时间、定题目、定难度，你只有几秒。</p>
+    <p>汉弗莱在问答这一章列了一串陷阱，我挑几个最容易踩的。</p>
+    <p><strong>不要重复对方的否定说法。</strong>有个政治家被指控丑闻，他的回应是"我不是骗子"。这句话跟着他一辈子。原因很简单：听众的脑子只记住了"他"和"骗子"同时出现过，中间那个"不是"会被过滤掉。别人问"你们公司是不是孤注一掷"，你千万别答"我们没有孤注一掷"——第二天的标题就是"CEO 称公司没有孤注一掷"。</p>
+    <p><strong>不要推测。</strong>不知道就说不知道，或者说"这个数据我们还没公布，但我可以告诉你的是……"。为了面子临场编一个数字，是最贵的那种面子。</p>
+    <p><strong>不要默认错误的前提。</strong>有人问："鉴于贵公司竞争激烈、强调狼性的文化，怎么解释高管里女性比例这么高？"——这个问题里埋了一个你没承认过的判断。你如果直接回答后半句，就等于默认了前半句。正确的做法是先把前提纠回来："其实我们的文化相当包容，"然后再往下答。</p>
+    <p><strong>不要反问提问者。</strong>"那你觉得呢？""您的意思是？"——看起来像互动，实际上场面会失控。问题不清楚的时候，你自己解释一遍就好："我理解你是想问……"</p>
+    <p><strong>极端无理的问题，可以不答。</strong>微笑一下，下一个。不用辩，不用怒。问题足够无理的时候，在场的其他人都听得出来。</p>
+    <p>还有一条在"陷阱"之外，但我觉得比所有陷阱都重要：</p>
+    <p class="beat">听完整，并且听出问题背后的问题。</p>
+    <p>团队成员问你"这次合并会裁员吗"，他真正想问的大概率是"我会不会丢工作"。你如果只回答字面上那个问题，说"我不方便评论公司整体的人事安排"，技术上没错，但他要的东西你一点没给。更好的回答是接住他真正的问题："我不能推测公司整体的情况，但我可以告诉你，我们这个部门不太可能受影响，因为对方公司没有这个部门。"</p>
+    <p>很多人回答问题急，是因为怕冷场。但你抢在问题说完之前就开始组织答案，常常答的是你以为的那个问题。</p>
+  </div></details>
+</section>
+
+<!-- 08 -->
+<section class="part" id="s8">
+  <div class="phd"><div class="no">08</div><h2>准备到最后，是为了忘掉准备</h2></div>
+  <div class="cards">
+    <div class="c full2">
+      <h3>同一个人的两个场景</h3>
+      <div class="sub">汉弗莱把自己的故事放在了书的两头</div>
+      <div class="vs two">
+        <div class="vsb no"><span class="t">12 岁</span>
+          老师点名让她即兴发言，题目是"男生"。她走到全班面前，脑子一片慌乱，莫名其妙开口："我来自一个没有男孩、只有五个女孩的家庭，我不知道为什么老师要让我谈这个话题……"
+          <div class="rr">后面讲了什么她已经不记得，只记得几十双眼睛底下那种不安。</div></div>
+        <div class="vsb yes"><span class="t">26 岁 · 她的求婚脚本</span>
+          <span class="lbl">抓手</span>我们已经交往整整一年了，我们都觉得对方就是要找的人。
+          <span class="lbl">要点</span>我认为我们应该结婚。
+          <span class="lbl">结构体</span>共同的研究背景；享受彼此的陪伴；从没遇过一个对我如此一心一意的人。
+          <span class="lbl">呼吁行动</span>如果你没有这种感觉，我们各自往前走——我给你两天时间决定。
+          <div class="rr">三个月后他们结婚了。</div></div>
+      </div>
+      <div class="law" style="margin-top:13px"><span>全书的论证</span>就在这两件事中间。</div>
+    </div>
+  </div>
+  <details class="full"><summary><span class="chev">⌄</span><span class="tx">展开完整讲解</span><span class="ar">约 1100 字</span></summary>
+  <div class="prose">
+    <p>读到这本书最后，我发现汉弗莱把她自己的故事放在了两头。</p>
+    <p>开篇是七年级。老师认为十二岁的孩子该开始练即兴演讲，点了她的名，给的题目是"男生"。她走到全班面前，脑子里一片慌乱——她在一个很传统的家庭长大，父母连猫王的节目都不让看，谈论男生对她来说是禁区。她莫名其妙地开了口："我来自一个没有男孩、只有五个女孩的家庭，我不知道为什么老师要让我谈这个话题……"后面说了什么，她已经不记得了，只记得几十双眼睛底下那种不安。</p>
+    <p>那次尴尬，塑造了她后来整个职业生涯。她去学小提琴，逼自己上台；上大学时强迫自己每堂课至少发言一次；后来成了讲师、演讲稿撰稿人，最后开了一家专门训练领导者讲话的公司。</p>
+    <p>而书的结尾部分，是另一个场景。</p>
+    <p>她二十六岁，和一个做研究的小伙子谈了一年恋爱。她意识到这就是那个人，然后想：为什么要等他来求婚？</p>
+    <p>于是她准备了一份求婚脚本。抓手是：我们已经交往整整一年了，我们都觉得对方就是要找的人。要点是：我认为我们应该结婚。结构体是三条：我们有共同的研究背景；我们享受彼此的陪伴；我从来没遇到过一个对我如此一心一意的人。呼吁行动是：如果你也这么想最好，如果你没有这种感觉，那我们各自往前走——我给你两天时间决定。</p>
+    <p>她平静地排练，把它内化。周日晚上，她说了这些话。</p>
+    <p>第二天晚上，男方来找她："我不确定我已经做好现在结婚的决定，但我不想失去你。"三个月后他们结婚了。</p>
+    <p>同一个人。十二岁僵在讲台上语无伦次的女孩，和二十六岁拿着四步脚本去求婚的女人。</p>
+    <p class="beat">这本书真正的论证，就在这两件事中间。</p>
+    <p>说到这儿，可能还有最后一个疑问：这么多东西——心态、倾听、四个部分、四种结构、一串陷阱、停顿、语气——真要开口那一瞬间，我怎么可能全想得过来？</p>
+    <p>想不过来。也不需要。</p>
+    <p>汉弗莱在结尾引了格拉德威尔《眨眼之间》里的概念，叫"适应性无意识"。那些看起来瞬间完成的判断——急诊医生的处置、球员的三分球、即兴演员的下一句台词——不是凭空来的，是训练沉到意识以下之后的自动反应。</p>
+    <p>她还引了一位跟过布鲁斯大师的学者的话，我觉得这句可以当作整本书的总结：</p>
+    <blockquote><p>即兴创作的能力不仅仅是跟着感觉走，它建立在学习和实践的基础上，为表演者的即兴行动做好准备。</p></blockquote>
+    <p>爵士乐手上台之前不知道今晚会吹成什么样，但他知道所有的音阶和和弦。即兴剧场的演员不知道观众会扔来什么词，但他们共享一整套规则。他们的自由，是在熟到不用想的规则之上长出来的。</p>
+    <p>所以这件事最后会变成这样：你一开始需要在开会前花十分钟写下四块内容，笨拙，刻意，像在做作业。练上一段时间之后，你会发现自己在电梯里那四十秒，脑子已经自动开始找抓手了。</p>
+    <p>到那天，你就是别人眼里那个"天生会说话的人"。</p>
+  </div></details>
+</section>
+
+<div class="act" id="act">
+  <h3>把它用在你自己身上</h3>
+  <div class="s">把这本书读完，并不会改变任何事。先想一下：你最近一次错过的、或者即将到来的那个开口的场合，具体是什么？</div>
+  <ol>
+    <li>你的抓手是什么？</li>
+    <li>用一句话说，你的要点是什么？</li>
+    <li>支撑它的三条，用哪种模式排？</li>
+    <li>说完之后，你希望对方做什么？</li>
+  </ol>
+  <div class="ft">这四个问题，比读十本书有用。<br>答不上来第二个，说明你还没想清楚要说什么——那正是你该先解决的事。</div>
+</div>
+
+<footer>
+  内容出自《即兴演讲：掌控人生关键时刻》<br>朱迪思·汉弗莱 著 ｜ 人民邮电出版社<br>
+  框架整理与讲法：AI 世界转译官
+</footer>
+
+</div>
+
+<button id="top" aria-label="返回顶部">↑</button><div id="sharestatus" role="status" aria-live="polite"></div>
+
+<script>
+var menu=document.getElementById('menu'),mbtn=document.getElementById('mbtn'),
+    abtn=document.getElementById('abtn'),topBtn=document.getElementById('top'),
+    dets=[].slice.call(document.querySelectorAll('details.full'));
+
+mbtn.onclick=function(e){e.stopPropagation();menu.classList.toggle('open');mbtn.classList.toggle('act')};
+document.addEventListener('click',function(){menu.classList.remove('open');mbtn.classList.remove('act')});
+menu.addEventListener('click',function(e){e.stopPropagation();menu.classList.remove('open');mbtn.classList.remove('act')});
+
+function syncAll(){
+  var allOpen=dets.every(function(d){return d.open});
+  abtn.textContent=allOpen?'收起全文':'展开全文';
+  abtn.classList.toggle('act',allOpen);
+}
+abtn.onclick=function(){
+  var allOpen=dets.every(function(d){return d.open});
+  dets.forEach(function(d){d.open=!allOpen});
+  syncAll();
+};
+dets.forEach(function(d){d.addEventListener('toggle',syncAll)});
+
+addEventListener('scroll',function(){topBtn.classList.toggle('show',scrollY>700)},{passive:true});
+topBtn.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+syncAll();
+new MutationObserver(function(){mbtn.setAttribute('aria-expanded',menu.classList.contains('open')?'true':'false')}).observe(menu,{attributes:true,attributeFilter:['class']});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){menu.classList.remove('open');mbtn.classList.remove('act');mbtn.focus()}});
+document.getElementById('sharebtn').onclick=async function(){
+  var url=location.href, status=document.getElementById('sharestatus');
+  function notify(message){status.textContent=message;status.style.display='block';setTimeout(function(){status.style.display='none'},3500)}
+  try{
+    if(navigator.share){await navigator.share({title:document.title,url:url});return}
+    await navigator.clipboard.writeText(url);notify('链接已复制，可以分享给朋友了');
+  }catch(e){if(e.name!=='AbortError'){window.prompt('复制这个链接分享给朋友',url)}}
+};
+</script>
+</body>
+</html>
